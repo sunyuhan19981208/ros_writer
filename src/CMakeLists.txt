@@ -81,6 +81,8 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 
 add_executable(read_msg read_msg.cpp)
 add_executable(write_msg_to_ros write_msg_to_ros.cpp util.cc)
+add_executable(util_test util_test.cc util.cc)
 
 target_link_libraries(read_msg ${catkin_LIBRARIES})
 target_link_libraries(write_msg_to_ros ${catkin_LIBRARIES})
+target_link_libraries(util_test ${catkin_LIBRARIES})
