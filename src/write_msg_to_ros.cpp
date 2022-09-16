@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
     auto pub_img = [&img_pub](int i){
         sensor_msgs::Image img;
         std::stringstream img_path;
-        img_path << "/home/sunyuhan/syhdata/image3/" << i << "_1.png";
+        img_path << "/home/sunyuhan/syhdata2/image3/" << i << "_1.png";
         Util::ReadImage(img_path.str().c_str(), img);
         img_pub.publish(img);
     };
@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
     auto pub_imu = [&imu_pub](int i){
         sensor_msgs::Imu imu;
         std::stringstream imu_path;
-        imu_path << "/home/sunyuhan/syhdata/imu/" << i << ".bin";
+        imu_path << "/home/sunyuhan/syhdata2/imu/" << i << ".bin";
         // TODO : extend to 4 topics
         Util::ReadImu(imu_path.str().c_str(), imu);
         imu_pub.publish(imu);
@@ -37,16 +37,16 @@ int main(int argc, char **argv) {
     auto pub_gps = [&gps_pub](int i){
         sensor_msgs::NavSatFix gps;
         std::stringstream gps_path;
-        gps_path << "/home/sunyuhan/syhdata/gps/" << i << ".bin";
+        gps_path << "/home/sunyuhan/syhdata2/gps/" << i << ".bin";
         Util::ReadGps(gps_path.str().c_str(), gps);
         gps_pub.publish(gps);
     };
 
-    while(ros::ok() && i<300){
-        std_msgs::String msg;
-        msg.data = "test";
-        pub.publish(msg);
+    while(ros::ok() && i<60){
         pub_img(i);
+        pub_imu(i);
+        pub_gps(i);
+        i++;
         ros::spinOnce();
         loop_rate.sleep();
     }
