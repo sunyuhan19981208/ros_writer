@@ -74,6 +74,8 @@ find_package(catkin REQUIRED COMPONENTS
     tf
     cv_bridge
     )
+set(OpenCV_DIR /usr/share/OpenCV/)
+find_package(OpenCV REQUIRED)
 
 catkin_workspace()
 
