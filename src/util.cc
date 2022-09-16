@@ -9,7 +9,7 @@ bool Util::ReadImage(const char* path, sensor_msgs::Image&image) {
 bool Util::ReadImu(const char* path, sensor_msgs::Imu&image) {
     std::ifstream jfile;
     jfile.open(path);
-    json json_data;
+    nlohmann::json json_data;
     jfile >> json_data;
     image.header = std_msgs::Header();
     image.angular_velocity.x = json_data.at("angular_velocity").at("x_val");
@@ -28,7 +28,7 @@ bool Util::ReadImu(const char* path, sensor_msgs::Imu&image) {
 bool Util::ReadGps(const char* path, sensor_msgs::NavSatFix& gps) {
     std::ifstream jfile;
     jfile.open(path);
-    json json_data;
+    nlohmann::json json_data;
     jfile >> json_data;
     gps.header = std_msgs::Header();
     gps.altitude = json_data.at("gnss").at("geo_point").at("altitude");
