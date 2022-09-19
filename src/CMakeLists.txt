@@ -88,3 +88,8 @@ add_executable(util_test util_test.cc util.cc)
 target_link_libraries(read_msg ${catkin_LIBRARIES})
 target_link_libraries(write_msg_to_ros ${catkin_LIBRARIES})
 target_link_libraries(util_test ${catkin_LIBRARIES})
+
+target_link_libraries(write_msg_to_ros stdc++fs)
+
+
+set(CMAKE_EXE_LINKER_FLAGS "-lstdc++fs")
